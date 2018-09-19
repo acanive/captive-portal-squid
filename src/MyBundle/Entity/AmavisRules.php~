@@ -1,0 +1,1910 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AmavisRules
+ *
+ * @ORM\Table(name="amavis_rules", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyID", columns={"PolicyID"})})
+ * @ORM\Entity
+ */
+class AmavisRules
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_virus_checks", type="smallint", nullable=true)
+     */
+    private $bypassVirusChecks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_virus_checks_m", type="smallint", nullable=false)
+     */
+    private $bypassVirusChecksM = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_banned_checks", type="smallint", nullable=true)
+     */
+    private $bypassBannedChecks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_banned_checks_m", type="smallint", nullable=false)
+     */
+    private $bypassBannedChecksM = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_spam_checks", type="smallint", nullable=true)
+     */
+    private $bypassSpamChecks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_spam_checks_m", type="smallint", nullable=false)
+     */
+    private $bypassSpamChecksM = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_header_checks", type="smallint", nullable=true)
+     */
+    private $bypassHeaderChecks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bypass_header_checks_m", type="smallint", nullable=false)
+     */
+    private $bypassHeaderChecksM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_tag_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamTagLevel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag_level_m", type="smallint", nullable=false)
+     */
+    private $spamTagLevelM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_tag2_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamTag2Level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag2_level_m", type="smallint", nullable=false)
+     */
+    private $spamTag2LevelM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_tag3_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamTag3Level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag3_level_m", type="smallint", nullable=false)
+     */
+    private $spamTag3LevelM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_kill_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamKillLevel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_kill_level_m", type="smallint", nullable=false)
+     */
+    private $spamKillLevelM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_dsn_cutoff_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamDsnCutoffLevel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_dsn_cutoff_level_m", type="smallint", nullable=false)
+     */
+    private $spamDsnCutoffLevelM = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="spam_quarantine_cutoff_level", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $spamQuarantineCutoffLevel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_quarantine_cutoff_level_m", type="smallint", nullable=false)
+     */
+    private $spamQuarantineCutoffLevelM = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_modifies_subject", type="smallint", nullable=true)
+     */
+    private $spamModifiesSubject;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_modifies_subject_m", type="smallint", nullable=false)
+     */
+    private $spamModifiesSubjectM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spam_tag_subject", type="string", length=255, nullable=true)
+     */
+    private $spamTagSubject;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag_subject_m", type="smallint", nullable=false)
+     */
+    private $spamTagSubjectM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spam_tag2_subject", type="string", length=255, nullable=true)
+     */
+    private $spamTag2Subject;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag2_subject_m", type="smallint", nullable=false)
+     */
+    private $spamTag2SubjectM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spam_tag3_subject", type="string", length=255, nullable=true)
+     */
+    private $spamTag3Subject;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spam_tag3_subject_m", type="smallint", nullable=false)
+     */
+    private $spamTag3SubjectM = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_message_size", type="bigint", nullable=true)
+     */
+    private $maxMessageSize;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_message_size_m", type="smallint", nullable=false)
+     */
+    private $maxMessageSizeM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="banned_files", type="text", length=65535, nullable=true)
+     */
+    private $bannedFiles;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="banned_files_m", type="smallint", nullable=false)
+     */
+    private $bannedFilesM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sender_whitelist", type="text", length=65535, nullable=true)
+     */
+    private $senderWhitelist;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sender_whitelist_m", type="smallint", nullable=false)
+     */
+    private $senderWhitelistM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sender_blacklist", type="text", length=65535, nullable=true)
+     */
+    private $senderBlacklist;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sender_blacklist_m", type="smallint", nullable=false)
+     */
+    private $senderBlacklistM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notify_admin_newvirus", type="string", length=255, nullable=true)
+     */
+    private $notifyAdminNewvirus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notify_admin_newvirus_m", type="smallint", nullable=false)
+     */
+    private $notifyAdminNewvirusM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notify_admin_virus", type="string", length=255, nullable=true)
+     */
+    private $notifyAdminVirus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notify_admin_virus_m", type="smallint", nullable=false)
+     */
+    private $notifyAdminVirusM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notify_admin_spam", type="string", length=255, nullable=true)
+     */
+    private $notifyAdminSpam;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notify_admin_spam_m", type="smallint", nullable=false)
+     */
+    private $notifyAdminSpamM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notify_admin_banned_file", type="string", length=255, nullable=true)
+     */
+    private $notifyAdminBannedFile;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notify_admin_banned_file_m", type="smallint", nullable=false)
+     */
+    private $notifyAdminBannedFileM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notify_admin_bad_header", type="string", length=255, nullable=true)
+     */
+    private $notifyAdminBadHeader;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notify_admin_bad_header_m", type="smallint", nullable=false)
+     */
+    private $notifyAdminBadHeaderM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quarantine_virus", type="string", length=255, nullable=true)
+     */
+    private $quarantineVirus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quarantine_virus_m", type="smallint", nullable=false)
+     */
+    private $quarantineVirusM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quarantine_banned_file", type="string", length=255, nullable=true)
+     */
+    private $quarantineBannedFile;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quarantine_banned_file_m", type="smallint", nullable=false)
+     */
+    private $quarantineBannedFileM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quarantine_bad_header", type="string", length=255, nullable=true)
+     */
+    private $quarantineBadHeader;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quarantine_bad_header_m", type="smallint", nullable=false)
+     */
+    private $quarantineBadHeaderM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quarantine_spam", type="string", length=255, nullable=true)
+     */
+    private $quarantineSpam;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quarantine_spam_m", type="smallint", nullable=false)
+     */
+    private $quarantineSpamM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bcc_to", type="string", length=255, nullable=true)
+     */
+    private $bccTo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bcc_to_m", type="smallint", nullable=false)
+     */
+    private $bccToM = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Policies
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Policies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyID", referencedColumnName="ID")
+     * })
+     */
+    private $policyid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return AmavisRules
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return AmavisRules
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set bypassVirusChecks
+     *
+     * @param integer $bypassVirusChecks
+     *
+     * @return AmavisRules
+     */
+    public function setBypassVirusChecks($bypassVirusChecks)
+    {
+        $this->bypassVirusChecks = $bypassVirusChecks;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassVirusChecks
+     *
+     * @return integer
+     */
+    public function getBypassVirusChecks()
+    {
+        return $this->bypassVirusChecks;
+    }
+
+    /**
+     * Set bypassVirusChecksM
+     *
+     * @param integer $bypassVirusChecksM
+     *
+     * @return AmavisRules
+     */
+    public function setBypassVirusChecksM($bypassVirusChecksM)
+    {
+        $this->bypassVirusChecksM = $bypassVirusChecksM;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassVirusChecksM
+     *
+     * @return integer
+     */
+    public function getBypassVirusChecksM()
+    {
+        return $this->bypassVirusChecksM;
+    }
+
+    /**
+     * Set bypassBannedChecks
+     *
+     * @param integer $bypassBannedChecks
+     *
+     * @return AmavisRules
+     */
+    public function setBypassBannedChecks($bypassBannedChecks)
+    {
+        $this->bypassBannedChecks = $bypassBannedChecks;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassBannedChecks
+     *
+     * @return integer
+     */
+    public function getBypassBannedChecks()
+    {
+        return $this->bypassBannedChecks;
+    }
+
+    /**
+     * Set bypassBannedChecksM
+     *
+     * @param integer $bypassBannedChecksM
+     *
+     * @return AmavisRules
+     */
+    public function setBypassBannedChecksM($bypassBannedChecksM)
+    {
+        $this->bypassBannedChecksM = $bypassBannedChecksM;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassBannedChecksM
+     *
+     * @return integer
+     */
+    public function getBypassBannedChecksM()
+    {
+        return $this->bypassBannedChecksM;
+    }
+
+    /**
+     * Set bypassSpamChecks
+     *
+     * @param integer $bypassSpamChecks
+     *
+     * @return AmavisRules
+     */
+    public function setBypassSpamChecks($bypassSpamChecks)
+    {
+        $this->bypassSpamChecks = $bypassSpamChecks;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassSpamChecks
+     *
+     * @return integer
+     */
+    public function getBypassSpamChecks()
+    {
+        return $this->bypassSpamChecks;
+    }
+
+    /**
+     * Set bypassSpamChecksM
+     *
+     * @param integer $bypassSpamChecksM
+     *
+     * @return AmavisRules
+     */
+    public function setBypassSpamChecksM($bypassSpamChecksM)
+    {
+        $this->bypassSpamChecksM = $bypassSpamChecksM;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassSpamChecksM
+     *
+     * @return integer
+     */
+    public function getBypassSpamChecksM()
+    {
+        return $this->bypassSpamChecksM;
+    }
+
+    /**
+     * Set bypassHeaderChecks
+     *
+     * @param integer $bypassHeaderChecks
+     *
+     * @return AmavisRules
+     */
+    public function setBypassHeaderChecks($bypassHeaderChecks)
+    {
+        $this->bypassHeaderChecks = $bypassHeaderChecks;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassHeaderChecks
+     *
+     * @return integer
+     */
+    public function getBypassHeaderChecks()
+    {
+        return $this->bypassHeaderChecks;
+    }
+
+    /**
+     * Set bypassHeaderChecksM
+     *
+     * @param integer $bypassHeaderChecksM
+     *
+     * @return AmavisRules
+     */
+    public function setBypassHeaderChecksM($bypassHeaderChecksM)
+    {
+        $this->bypassHeaderChecksM = $bypassHeaderChecksM;
+
+        return $this;
+    }
+
+    /**
+     * Get bypassHeaderChecksM
+     *
+     * @return integer
+     */
+    public function getBypassHeaderChecksM()
+    {
+        return $this->bypassHeaderChecksM;
+    }
+
+    /**
+     * Set spamTagLevel
+     *
+     * @param float $spamTagLevel
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTagLevel($spamTagLevel)
+    {
+        $this->spamTagLevel = $spamTagLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTagLevel
+     *
+     * @return float
+     */
+    public function getSpamTagLevel()
+    {
+        return $this->spamTagLevel;
+    }
+
+    /**
+     * Set spamTagLevelM
+     *
+     * @param integer $spamTagLevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTagLevelM($spamTagLevelM)
+    {
+        $this->spamTagLevelM = $spamTagLevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTagLevelM
+     *
+     * @return integer
+     */
+    public function getSpamTagLevelM()
+    {
+        return $this->spamTagLevelM;
+    }
+
+    /**
+     * Set spamTag2Level
+     *
+     * @param float $spamTag2Level
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag2Level($spamTag2Level)
+    {
+        $this->spamTag2Level = $spamTag2Level;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag2Level
+     *
+     * @return float
+     */
+    public function getSpamTag2Level()
+    {
+        return $this->spamTag2Level;
+    }
+
+    /**
+     * Set spamTag2LevelM
+     *
+     * @param integer $spamTag2LevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag2LevelM($spamTag2LevelM)
+    {
+        $this->spamTag2LevelM = $spamTag2LevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag2LevelM
+     *
+     * @return integer
+     */
+    public function getSpamTag2LevelM()
+    {
+        return $this->spamTag2LevelM;
+    }
+
+    /**
+     * Set spamTag3Level
+     *
+     * @param float $spamTag3Level
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag3Level($spamTag3Level)
+    {
+        $this->spamTag3Level = $spamTag3Level;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag3Level
+     *
+     * @return float
+     */
+    public function getSpamTag3Level()
+    {
+        return $this->spamTag3Level;
+    }
+
+    /**
+     * Set spamTag3LevelM
+     *
+     * @param integer $spamTag3LevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag3LevelM($spamTag3LevelM)
+    {
+        $this->spamTag3LevelM = $spamTag3LevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag3LevelM
+     *
+     * @return integer
+     */
+    public function getSpamTag3LevelM()
+    {
+        return $this->spamTag3LevelM;
+    }
+
+    /**
+     * Set spamKillLevel
+     *
+     * @param float $spamKillLevel
+     *
+     * @return AmavisRules
+     */
+    public function setSpamKillLevel($spamKillLevel)
+    {
+        $this->spamKillLevel = $spamKillLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get spamKillLevel
+     *
+     * @return float
+     */
+    public function getSpamKillLevel()
+    {
+        return $this->spamKillLevel;
+    }
+
+    /**
+     * Set spamKillLevelM
+     *
+     * @param integer $spamKillLevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamKillLevelM($spamKillLevelM)
+    {
+        $this->spamKillLevelM = $spamKillLevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamKillLevelM
+     *
+     * @return integer
+     */
+    public function getSpamKillLevelM()
+    {
+        return $this->spamKillLevelM;
+    }
+
+    /**
+     * Set spamDsnCutoffLevel
+     *
+     * @param float $spamDsnCutoffLevel
+     *
+     * @return AmavisRules
+     */
+    public function setSpamDsnCutoffLevel($spamDsnCutoffLevel)
+    {
+        $this->spamDsnCutoffLevel = $spamDsnCutoffLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get spamDsnCutoffLevel
+     *
+     * @return float
+     */
+    public function getSpamDsnCutoffLevel()
+    {
+        return $this->spamDsnCutoffLevel;
+    }
+
+    /**
+     * Set spamDsnCutoffLevelM
+     *
+     * @param integer $spamDsnCutoffLevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamDsnCutoffLevelM($spamDsnCutoffLevelM)
+    {
+        $this->spamDsnCutoffLevelM = $spamDsnCutoffLevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamDsnCutoffLevelM
+     *
+     * @return integer
+     */
+    public function getSpamDsnCutoffLevelM()
+    {
+        return $this->spamDsnCutoffLevelM;
+    }
+
+    /**
+     * Set spamQuarantineCutoffLevel
+     *
+     * @param float $spamQuarantineCutoffLevel
+     *
+     * @return AmavisRules
+     */
+    public function setSpamQuarantineCutoffLevel($spamQuarantineCutoffLevel)
+    {
+        $this->spamQuarantineCutoffLevel = $spamQuarantineCutoffLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get spamQuarantineCutoffLevel
+     *
+     * @return float
+     */
+    public function getSpamQuarantineCutoffLevel()
+    {
+        return $this->spamQuarantineCutoffLevel;
+    }
+
+    /**
+     * Set spamQuarantineCutoffLevelM
+     *
+     * @param integer $spamQuarantineCutoffLevelM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamQuarantineCutoffLevelM($spamQuarantineCutoffLevelM)
+    {
+        $this->spamQuarantineCutoffLevelM = $spamQuarantineCutoffLevelM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamQuarantineCutoffLevelM
+     *
+     * @return integer
+     */
+    public function getSpamQuarantineCutoffLevelM()
+    {
+        return $this->spamQuarantineCutoffLevelM;
+    }
+
+    /**
+     * Set spamModifiesSubject
+     *
+     * @param integer $spamModifiesSubject
+     *
+     * @return AmavisRules
+     */
+    public function setSpamModifiesSubject($spamModifiesSubject)
+    {
+        $this->spamModifiesSubject = $spamModifiesSubject;
+
+        return $this;
+    }
+
+    /**
+     * Get spamModifiesSubject
+     *
+     * @return integer
+     */
+    public function getSpamModifiesSubject()
+    {
+        return $this->spamModifiesSubject;
+    }
+
+    /**
+     * Set spamModifiesSubjectM
+     *
+     * @param integer $spamModifiesSubjectM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamModifiesSubjectM($spamModifiesSubjectM)
+    {
+        $this->spamModifiesSubjectM = $spamModifiesSubjectM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamModifiesSubjectM
+     *
+     * @return integer
+     */
+    public function getSpamModifiesSubjectM()
+    {
+        return $this->spamModifiesSubjectM;
+    }
+
+    /**
+     * Set spamTagSubject
+     *
+     * @param string $spamTagSubject
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTagSubject($spamTagSubject)
+    {
+        $this->spamTagSubject = $spamTagSubject;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTagSubject
+     *
+     * @return string
+     */
+    public function getSpamTagSubject()
+    {
+        return $this->spamTagSubject;
+    }
+
+    /**
+     * Set spamTagSubjectM
+     *
+     * @param integer $spamTagSubjectM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTagSubjectM($spamTagSubjectM)
+    {
+        $this->spamTagSubjectM = $spamTagSubjectM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTagSubjectM
+     *
+     * @return integer
+     */
+    public function getSpamTagSubjectM()
+    {
+        return $this->spamTagSubjectM;
+    }
+
+    /**
+     * Set spamTag2Subject
+     *
+     * @param string $spamTag2Subject
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag2Subject($spamTag2Subject)
+    {
+        $this->spamTag2Subject = $spamTag2Subject;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag2Subject
+     *
+     * @return string
+     */
+    public function getSpamTag2Subject()
+    {
+        return $this->spamTag2Subject;
+    }
+
+    /**
+     * Set spamTag2SubjectM
+     *
+     * @param integer $spamTag2SubjectM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag2SubjectM($spamTag2SubjectM)
+    {
+        $this->spamTag2SubjectM = $spamTag2SubjectM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag2SubjectM
+     *
+     * @return integer
+     */
+    public function getSpamTag2SubjectM()
+    {
+        return $this->spamTag2SubjectM;
+    }
+
+    /**
+     * Set spamTag3Subject
+     *
+     * @param string $spamTag3Subject
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag3Subject($spamTag3Subject)
+    {
+        $this->spamTag3Subject = $spamTag3Subject;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag3Subject
+     *
+     * @return string
+     */
+    public function getSpamTag3Subject()
+    {
+        return $this->spamTag3Subject;
+    }
+
+    /**
+     * Set spamTag3SubjectM
+     *
+     * @param integer $spamTag3SubjectM
+     *
+     * @return AmavisRules
+     */
+    public function setSpamTag3SubjectM($spamTag3SubjectM)
+    {
+        $this->spamTag3SubjectM = $spamTag3SubjectM;
+
+        return $this;
+    }
+
+    /**
+     * Get spamTag3SubjectM
+     *
+     * @return integer
+     */
+    public function getSpamTag3SubjectM()
+    {
+        return $this->spamTag3SubjectM;
+    }
+
+    /**
+     * Set maxMessageSize
+     *
+     * @param integer $maxMessageSize
+     *
+     * @return AmavisRules
+     */
+    public function setMaxMessageSize($maxMessageSize)
+    {
+        $this->maxMessageSize = $maxMessageSize;
+
+        return $this;
+    }
+
+    /**
+     * Get maxMessageSize
+     *
+     * @return integer
+     */
+    public function getMaxMessageSize()
+    {
+        return $this->maxMessageSize;
+    }
+
+    /**
+     * Set maxMessageSizeM
+     *
+     * @param integer $maxMessageSizeM
+     *
+     * @return AmavisRules
+     */
+    public function setMaxMessageSizeM($maxMessageSizeM)
+    {
+        $this->maxMessageSizeM = $maxMessageSizeM;
+
+        return $this;
+    }
+
+    /**
+     * Get maxMessageSizeM
+     *
+     * @return integer
+     */
+    public function getMaxMessageSizeM()
+    {
+        return $this->maxMessageSizeM;
+    }
+
+    /**
+     * Set bannedFiles
+     *
+     * @param string $bannedFiles
+     *
+     * @return AmavisRules
+     */
+    public function setBannedFiles($bannedFiles)
+    {
+        $this->bannedFiles = $bannedFiles;
+
+        return $this;
+    }
+
+    /**
+     * Get bannedFiles
+     *
+     * @return string
+     */
+    public function getBannedFiles()
+    {
+        return $this->bannedFiles;
+    }
+
+    /**
+     * Set bannedFilesM
+     *
+     * @param integer $bannedFilesM
+     *
+     * @return AmavisRules
+     */
+    public function setBannedFilesM($bannedFilesM)
+    {
+        $this->bannedFilesM = $bannedFilesM;
+
+        return $this;
+    }
+
+    /**
+     * Get bannedFilesM
+     *
+     * @return integer
+     */
+    public function getBannedFilesM()
+    {
+        return $this->bannedFilesM;
+    }
+
+    /**
+     * Set senderWhitelist
+     *
+     * @param string $senderWhitelist
+     *
+     * @return AmavisRules
+     */
+    public function setSenderWhitelist($senderWhitelist)
+    {
+        $this->senderWhitelist = $senderWhitelist;
+
+        return $this;
+    }
+
+    /**
+     * Get senderWhitelist
+     *
+     * @return string
+     */
+    public function getSenderWhitelist()
+    {
+        return $this->senderWhitelist;
+    }
+
+    /**
+     * Set senderWhitelistM
+     *
+     * @param integer $senderWhitelistM
+     *
+     * @return AmavisRules
+     */
+    public function setSenderWhitelistM($senderWhitelistM)
+    {
+        $this->senderWhitelistM = $senderWhitelistM;
+
+        return $this;
+    }
+
+    /**
+     * Get senderWhitelistM
+     *
+     * @return integer
+     */
+    public function getSenderWhitelistM()
+    {
+        return $this->senderWhitelistM;
+    }
+
+    /**
+     * Set senderBlacklist
+     *
+     * @param string $senderBlacklist
+     *
+     * @return AmavisRules
+     */
+    public function setSenderBlacklist($senderBlacklist)
+    {
+        $this->senderBlacklist = $senderBlacklist;
+
+        return $this;
+    }
+
+    /**
+     * Get senderBlacklist
+     *
+     * @return string
+     */
+    public function getSenderBlacklist()
+    {
+        return $this->senderBlacklist;
+    }
+
+    /**
+     * Set senderBlacklistM
+     *
+     * @param integer $senderBlacklistM
+     *
+     * @return AmavisRules
+     */
+    public function setSenderBlacklistM($senderBlacklistM)
+    {
+        $this->senderBlacklistM = $senderBlacklistM;
+
+        return $this;
+    }
+
+    /**
+     * Get senderBlacklistM
+     *
+     * @return integer
+     */
+    public function getSenderBlacklistM()
+    {
+        return $this->senderBlacklistM;
+    }
+
+    /**
+     * Set notifyAdminNewvirus
+     *
+     * @param string $notifyAdminNewvirus
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminNewvirus($notifyAdminNewvirus)
+    {
+        $this->notifyAdminNewvirus = $notifyAdminNewvirus;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminNewvirus
+     *
+     * @return string
+     */
+    public function getNotifyAdminNewvirus()
+    {
+        return $this->notifyAdminNewvirus;
+    }
+
+    /**
+     * Set notifyAdminNewvirusM
+     *
+     * @param integer $notifyAdminNewvirusM
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminNewvirusM($notifyAdminNewvirusM)
+    {
+        $this->notifyAdminNewvirusM = $notifyAdminNewvirusM;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminNewvirusM
+     *
+     * @return integer
+     */
+    public function getNotifyAdminNewvirusM()
+    {
+        return $this->notifyAdminNewvirusM;
+    }
+
+    /**
+     * Set notifyAdminVirus
+     *
+     * @param string $notifyAdminVirus
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminVirus($notifyAdminVirus)
+    {
+        $this->notifyAdminVirus = $notifyAdminVirus;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminVirus
+     *
+     * @return string
+     */
+    public function getNotifyAdminVirus()
+    {
+        return $this->notifyAdminVirus;
+    }
+
+    /**
+     * Set notifyAdminVirusM
+     *
+     * @param integer $notifyAdminVirusM
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminVirusM($notifyAdminVirusM)
+    {
+        $this->notifyAdminVirusM = $notifyAdminVirusM;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminVirusM
+     *
+     * @return integer
+     */
+    public function getNotifyAdminVirusM()
+    {
+        return $this->notifyAdminVirusM;
+    }
+
+    /**
+     * Set notifyAdminSpam
+     *
+     * @param string $notifyAdminSpam
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminSpam($notifyAdminSpam)
+    {
+        $this->notifyAdminSpam = $notifyAdminSpam;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminSpam
+     *
+     * @return string
+     */
+    public function getNotifyAdminSpam()
+    {
+        return $this->notifyAdminSpam;
+    }
+
+    /**
+     * Set notifyAdminSpamM
+     *
+     * @param integer $notifyAdminSpamM
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminSpamM($notifyAdminSpamM)
+    {
+        $this->notifyAdminSpamM = $notifyAdminSpamM;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminSpamM
+     *
+     * @return integer
+     */
+    public function getNotifyAdminSpamM()
+    {
+        return $this->notifyAdminSpamM;
+    }
+
+    /**
+     * Set notifyAdminBannedFile
+     *
+     * @param string $notifyAdminBannedFile
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminBannedFile($notifyAdminBannedFile)
+    {
+        $this->notifyAdminBannedFile = $notifyAdminBannedFile;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminBannedFile
+     *
+     * @return string
+     */
+    public function getNotifyAdminBannedFile()
+    {
+        return $this->notifyAdminBannedFile;
+    }
+
+    /**
+     * Set notifyAdminBannedFileM
+     *
+     * @param integer $notifyAdminBannedFileM
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminBannedFileM($notifyAdminBannedFileM)
+    {
+        $this->notifyAdminBannedFileM = $notifyAdminBannedFileM;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminBannedFileM
+     *
+     * @return integer
+     */
+    public function getNotifyAdminBannedFileM()
+    {
+        return $this->notifyAdminBannedFileM;
+    }
+
+    /**
+     * Set notifyAdminBadHeader
+     *
+     * @param string $notifyAdminBadHeader
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminBadHeader($notifyAdminBadHeader)
+    {
+        $this->notifyAdminBadHeader = $notifyAdminBadHeader;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminBadHeader
+     *
+     * @return string
+     */
+    public function getNotifyAdminBadHeader()
+    {
+        return $this->notifyAdminBadHeader;
+    }
+
+    /**
+     * Set notifyAdminBadHeaderM
+     *
+     * @param integer $notifyAdminBadHeaderM
+     *
+     * @return AmavisRules
+     */
+    public function setNotifyAdminBadHeaderM($notifyAdminBadHeaderM)
+    {
+        $this->notifyAdminBadHeaderM = $notifyAdminBadHeaderM;
+
+        return $this;
+    }
+
+    /**
+     * Get notifyAdminBadHeaderM
+     *
+     * @return integer
+     */
+    public function getNotifyAdminBadHeaderM()
+    {
+        return $this->notifyAdminBadHeaderM;
+    }
+
+    /**
+     * Set quarantineVirus
+     *
+     * @param string $quarantineVirus
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineVirus($quarantineVirus)
+    {
+        $this->quarantineVirus = $quarantineVirus;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineVirus
+     *
+     * @return string
+     */
+    public function getQuarantineVirus()
+    {
+        return $this->quarantineVirus;
+    }
+
+    /**
+     * Set quarantineVirusM
+     *
+     * @param integer $quarantineVirusM
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineVirusM($quarantineVirusM)
+    {
+        $this->quarantineVirusM = $quarantineVirusM;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineVirusM
+     *
+     * @return integer
+     */
+    public function getQuarantineVirusM()
+    {
+        return $this->quarantineVirusM;
+    }
+
+    /**
+     * Set quarantineBannedFile
+     *
+     * @param string $quarantineBannedFile
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineBannedFile($quarantineBannedFile)
+    {
+        $this->quarantineBannedFile = $quarantineBannedFile;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineBannedFile
+     *
+     * @return string
+     */
+    public function getQuarantineBannedFile()
+    {
+        return $this->quarantineBannedFile;
+    }
+
+    /**
+     * Set quarantineBannedFileM
+     *
+     * @param integer $quarantineBannedFileM
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineBannedFileM($quarantineBannedFileM)
+    {
+        $this->quarantineBannedFileM = $quarantineBannedFileM;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineBannedFileM
+     *
+     * @return integer
+     */
+    public function getQuarantineBannedFileM()
+    {
+        return $this->quarantineBannedFileM;
+    }
+
+    /**
+     * Set quarantineBadHeader
+     *
+     * @param string $quarantineBadHeader
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineBadHeader($quarantineBadHeader)
+    {
+        $this->quarantineBadHeader = $quarantineBadHeader;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineBadHeader
+     *
+     * @return string
+     */
+    public function getQuarantineBadHeader()
+    {
+        return $this->quarantineBadHeader;
+    }
+
+    /**
+     * Set quarantineBadHeaderM
+     *
+     * @param integer $quarantineBadHeaderM
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineBadHeaderM($quarantineBadHeaderM)
+    {
+        $this->quarantineBadHeaderM = $quarantineBadHeaderM;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineBadHeaderM
+     *
+     * @return integer
+     */
+    public function getQuarantineBadHeaderM()
+    {
+        return $this->quarantineBadHeaderM;
+    }
+
+    /**
+     * Set quarantineSpam
+     *
+     * @param string $quarantineSpam
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineSpam($quarantineSpam)
+    {
+        $this->quarantineSpam = $quarantineSpam;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineSpam
+     *
+     * @return string
+     */
+    public function getQuarantineSpam()
+    {
+        return $this->quarantineSpam;
+    }
+
+    /**
+     * Set quarantineSpamM
+     *
+     * @param integer $quarantineSpamM
+     *
+     * @return AmavisRules
+     */
+    public function setQuarantineSpamM($quarantineSpamM)
+    {
+        $this->quarantineSpamM = $quarantineSpamM;
+
+        return $this;
+    }
+
+    /**
+     * Get quarantineSpamM
+     *
+     * @return integer
+     */
+    public function getQuarantineSpamM()
+    {
+        return $this->quarantineSpamM;
+    }
+
+    /**
+     * Set bccTo
+     *
+     * @param string $bccTo
+     *
+     * @return AmavisRules
+     */
+    public function setBccTo($bccTo)
+    {
+        $this->bccTo = $bccTo;
+
+        return $this;
+    }
+
+    /**
+     * Get bccTo
+     *
+     * @return string
+     */
+    public function getBccTo()
+    {
+        return $this->bccTo;
+    }
+
+    /**
+     * Set bccToM
+     *
+     * @param integer $bccToM
+     *
+     * @return AmavisRules
+     */
+    public function setBccToM($bccToM)
+    {
+        $this->bccToM = $bccToM;
+
+        return $this;
+    }
+
+    /**
+     * Get bccToM
+     *
+     * @return integer
+     */
+    public function getBccToM()
+    {
+        return $this->bccToM;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return AmavisRules
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return AmavisRules
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set policyid
+     *
+     * @param \MyBundle\Entity\Policies $policyid
+     *
+     * @return AmavisRules
+     */
+    public function setPolicyid(\MyBundle\Entity\Policies $policyid = null)
+    {
+        $this->policyid = $policyid;
+
+        return $this;
+    }
+
+    /**
+     * Get policyid
+     *
+     * @return \MyBundle\Entity\Policies
+     */
+    public function getPolicyid()
+    {
+        return $this->policyid;
+    }
+}

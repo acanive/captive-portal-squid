@@ -1,0 +1,205 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AccountingTracking
+ *
+ * @ORM\Table(name="accounting_tracking", uniqueConstraints={@ORM\UniqueConstraint(name="AccountingID", columns={"AccountingID", "TrackKey", "PeriodKey"})}, indexes={@ORM\Index(name="accounting_tracking_idx1", columns={"LastUpdate"}), @ORM\Index(name="IDX_10F84FEE5DECE238", columns={"AccountingID"})})
+ * @ORM\Entity
+ */
+class AccountingTracking
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TrackKey", type="string", length=512, nullable=true)
+     */
+    private $trackkey;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PeriodKey", type="string", length=512, nullable=true)
+     */
+    private $periodkey;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastUpdate", type="bigint", nullable=true)
+     */
+    private $lastupdate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="MessageCount", type="bigint", nullable=true)
+     */
+    private $messagecount;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="MessageCumulativeSize", type="bigint", nullable=true)
+     */
+    private $messagecumulativesize;
+
+    /**
+     * @var \MyBundle\Entity\Accounting
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Accounting")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="AccountingID", referencedColumnName="ID")
+     * })
+     */
+    private $accountingid;
+
+
+
+    /**
+     * Set trackkey
+     *
+     * @param string $trackkey
+     *
+     * @return AccountingTracking
+     */
+    public function setTrackkey($trackkey)
+    {
+        $this->trackkey = $trackkey;
+
+        return $this;
+    }
+
+    /**
+     * Get trackkey
+     *
+     * @return string
+     */
+    public function getTrackkey()
+    {
+        return $this->trackkey;
+    }
+
+    /**
+     * Set periodkey
+     *
+     * @param string $periodkey
+     *
+     * @return AccountingTracking
+     */
+    public function setPeriodkey($periodkey)
+    {
+        $this->periodkey = $periodkey;
+
+        return $this;
+    }
+
+    /**
+     * Get periodkey
+     *
+     * @return string
+     */
+    public function getPeriodkey()
+    {
+        return $this->periodkey;
+    }
+
+    /**
+     * Set lastupdate
+     *
+     * @param integer $lastupdate
+     *
+     * @return AccountingTracking
+     */
+    public function setLastupdate($lastupdate)
+    {
+        $this->lastupdate = $lastupdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastupdate
+     *
+     * @return integer
+     */
+    public function getLastupdate()
+    {
+        return $this->lastupdate;
+    }
+
+    /**
+     * Set messagecount
+     *
+     * @param integer $messagecount
+     *
+     * @return AccountingTracking
+     */
+    public function setMessagecount($messagecount)
+    {
+        $this->messagecount = $messagecount;
+
+        return $this;
+    }
+
+    /**
+     * Get messagecount
+     *
+     * @return integer
+     */
+    public function getMessagecount()
+    {
+        return $this->messagecount;
+    }
+
+    /**
+     * Set messagecumulativesize
+     *
+     * @param integer $messagecumulativesize
+     *
+     * @return AccountingTracking
+     */
+    public function setMessagecumulativesize($messagecumulativesize)
+    {
+        $this->messagecumulativesize = $messagecumulativesize;
+
+        return $this;
+    }
+
+    /**
+     * Get messagecumulativesize
+     *
+     * @return integer
+     */
+    public function getMessagecumulativesize()
+    {
+        return $this->messagecumulativesize;
+    }
+
+    /**
+     * Set accountingid
+     *
+     * @param \MyBundle\Entity\Accounting $accountingid
+     *
+     * @return AccountingTracking
+     */
+    public function setAccountingid(\MyBundle\Entity\Accounting $accountingid = null)
+    {
+        $this->accountingid = $accountingid;
+
+        return $this;
+    }
+
+    /**
+     * Get accountingid
+     *
+     * @return \MyBundle\Entity\Accounting
+     */
+    public function getAccountingid()
+    {
+        return $this->accountingid;
+    }
+}

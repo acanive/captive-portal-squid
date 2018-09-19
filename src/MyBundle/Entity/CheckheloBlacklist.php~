@@ -1,0 +1,140 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CheckheloBlacklist
+ *
+ * @ORM\Table(name="checkhelo_blacklist", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"}), @ORM\UniqueConstraint(name="Helo", columns={"Helo"})})
+ * @ORM\Entity
+ */
+class CheckheloBlacklist
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Helo", type="string", length=255, nullable=false)
+     */
+    private $helo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return CheckheloBlacklist
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set helo
+     *
+     * @param string $helo
+     *
+     * @return CheckheloBlacklist
+     */
+    public function setHelo($helo)
+    {
+        $this->helo = $helo;
+
+        return $this;
+    }
+
+    /**
+     * Get helo
+     *
+     * @return string
+     */
+    public function getHelo()
+    {
+        return $this->helo;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return CheckheloBlacklist
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return CheckheloBlacklist
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+}

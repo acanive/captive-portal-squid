@@ -1,0 +1,329 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Quotas
+ *
+ * @ORM\Table(name="quotas", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyID", columns={"PolicyID"})})
+ * @ORM\Entity
+ */
+class Quotas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Track", type="string", length=255, nullable=false)
+     */
+    private $track;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Period", type="bigint", nullable=true)
+     */
+    private $period;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Verdict", type="string", length=255, nullable=true)
+     */
+    private $verdict;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Data", type="text", length=65535, nullable=true)
+     */
+    private $data;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastQuota", type="smallint", nullable=false)
+     */
+    private $lastquota = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Policies
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Policies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyID", referencedColumnName="ID")
+     * })
+     */
+    private $policyid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Quotas
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Quotas
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set track
+     *
+     * @param string $track
+     *
+     * @return Quotas
+     */
+    public function setTrack($track)
+    {
+        $this->track = $track;
+
+        return $this;
+    }
+
+    /**
+     * Get track
+     *
+     * @return string
+     */
+    public function getTrack()
+    {
+        return $this->track;
+    }
+
+    /**
+     * Set period
+     *
+     * @param integer $period
+     *
+     * @return Quotas
+     */
+    public function setPeriod($period)
+    {
+        $this->period = $period;
+
+        return $this;
+    }
+
+    /**
+     * Get period
+     *
+     * @return integer
+     */
+    public function getPeriod()
+    {
+        return $this->period;
+    }
+
+    /**
+     * Set verdict
+     *
+     * @param string $verdict
+     *
+     * @return Quotas
+     */
+    public function setVerdict($verdict)
+    {
+        $this->verdict = $verdict;
+
+        return $this;
+    }
+
+    /**
+     * Get verdict
+     *
+     * @return string
+     */
+    public function getVerdict()
+    {
+        return $this->verdict;
+    }
+
+    /**
+     * Set data
+     *
+     * @param string $data
+     *
+     * @return Quotas
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Get data
+     *
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set lastquota
+     *
+     * @param integer $lastquota
+     *
+     * @return Quotas
+     */
+    public function setLastquota($lastquota)
+    {
+        $this->lastquota = $lastquota;
+
+        return $this;
+    }
+
+    /**
+     * Get lastquota
+     *
+     * @return integer
+     */
+    public function getLastquota()
+    {
+        return $this->lastquota;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Quotas
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return Quotas
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set policyid
+     *
+     * @param \MyBundle\Entity\Policies $policyid
+     *
+     * @return Quotas
+     */
+    public function setPolicyid(\MyBundle\Entity\Policies $policyid = null)
+    {
+        $this->policyid = $policyid;
+
+        return $this;
+    }
+
+    /**
+     * Get policyid
+     *
+     * @return \MyBundle\Entity\Policies
+     */
+    public function getPolicyid()
+    {
+        return $this->policyid;
+    }
+}

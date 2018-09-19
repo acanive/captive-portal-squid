@@ -1,0 +1,577 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Greylisting
+ *
+ * @ORM\Table(name="greylisting", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyID", columns={"PolicyID"})})
+ * @ORM\Entity
+ */
+class Greylisting
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UseGreylisting", type="smallint", nullable=true)
+     */
+    private $usegreylisting;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="GreylistPeriod", type="bigint", nullable=true)
+     */
+    private $greylistperiod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Track", type="string", length=255, nullable=false)
+     */
+    private $track;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="GreylistAuthValidity", type="bigint", nullable=true)
+     */
+    private $greylistauthvalidity;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="GreylistUnAuthValidity", type="bigint", nullable=true)
+     */
+    private $greylistunauthvalidity;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UseAutoWhitelist", type="smallint", nullable=true)
+     */
+    private $useautowhitelist;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoWhitelistPeriod", type="bigint", nullable=true)
+     */
+    private $autowhitelistperiod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoWhitelistCount", type="bigint", nullable=true)
+     */
+    private $autowhitelistcount;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoWhitelistPercentage", type="bigint", nullable=true)
+     */
+    private $autowhitelistpercentage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UseAutoBlacklist", type="smallint", nullable=true)
+     */
+    private $useautoblacklist;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoBlacklistPeriod", type="bigint", nullable=true)
+     */
+    private $autoblacklistperiod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoBlacklistCount", type="bigint", nullable=true)
+     */
+    private $autoblacklistcount;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="AutoBlacklistPercentage", type="bigint", nullable=true)
+     */
+    private $autoblacklistpercentage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Policies
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Policies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyID", referencedColumnName="ID")
+     * })
+     */
+    private $policyid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Greylisting
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Greylisting
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set usegreylisting
+     *
+     * @param integer $usegreylisting
+     *
+     * @return Greylisting
+     */
+    public function setUsegreylisting($usegreylisting)
+    {
+        $this->usegreylisting = $usegreylisting;
+
+        return $this;
+    }
+
+    /**
+     * Get usegreylisting
+     *
+     * @return integer
+     */
+    public function getUsegreylisting()
+    {
+        return $this->usegreylisting;
+    }
+
+    /**
+     * Set greylistperiod
+     *
+     * @param integer $greylistperiod
+     *
+     * @return Greylisting
+     */
+    public function setGreylistperiod($greylistperiod)
+    {
+        $this->greylistperiod = $greylistperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get greylistperiod
+     *
+     * @return integer
+     */
+    public function getGreylistperiod()
+    {
+        return $this->greylistperiod;
+    }
+
+    /**
+     * Set track
+     *
+     * @param string $track
+     *
+     * @return Greylisting
+     */
+    public function setTrack($track)
+    {
+        $this->track = $track;
+
+        return $this;
+    }
+
+    /**
+     * Get track
+     *
+     * @return string
+     */
+    public function getTrack()
+    {
+        return $this->track;
+    }
+
+    /**
+     * Set greylistauthvalidity
+     *
+     * @param integer $greylistauthvalidity
+     *
+     * @return Greylisting
+     */
+    public function setGreylistauthvalidity($greylistauthvalidity)
+    {
+        $this->greylistauthvalidity = $greylistauthvalidity;
+
+        return $this;
+    }
+
+    /**
+     * Get greylistauthvalidity
+     *
+     * @return integer
+     */
+    public function getGreylistauthvalidity()
+    {
+        return $this->greylistauthvalidity;
+    }
+
+    /**
+     * Set greylistunauthvalidity
+     *
+     * @param integer $greylistunauthvalidity
+     *
+     * @return Greylisting
+     */
+    public function setGreylistunauthvalidity($greylistunauthvalidity)
+    {
+        $this->greylistunauthvalidity = $greylistunauthvalidity;
+
+        return $this;
+    }
+
+    /**
+     * Get greylistunauthvalidity
+     *
+     * @return integer
+     */
+    public function getGreylistunauthvalidity()
+    {
+        return $this->greylistunauthvalidity;
+    }
+
+    /**
+     * Set useautowhitelist
+     *
+     * @param integer $useautowhitelist
+     *
+     * @return Greylisting
+     */
+    public function setUseautowhitelist($useautowhitelist)
+    {
+        $this->useautowhitelist = $useautowhitelist;
+
+        return $this;
+    }
+
+    /**
+     * Get useautowhitelist
+     *
+     * @return integer
+     */
+    public function getUseautowhitelist()
+    {
+        return $this->useautowhitelist;
+    }
+
+    /**
+     * Set autowhitelistperiod
+     *
+     * @param integer $autowhitelistperiod
+     *
+     * @return Greylisting
+     */
+    public function setAutowhitelistperiod($autowhitelistperiod)
+    {
+        $this->autowhitelistperiod = $autowhitelistperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get autowhitelistperiod
+     *
+     * @return integer
+     */
+    public function getAutowhitelistperiod()
+    {
+        return $this->autowhitelistperiod;
+    }
+
+    /**
+     * Set autowhitelistcount
+     *
+     * @param integer $autowhitelistcount
+     *
+     * @return Greylisting
+     */
+    public function setAutowhitelistcount($autowhitelistcount)
+    {
+        $this->autowhitelistcount = $autowhitelistcount;
+
+        return $this;
+    }
+
+    /**
+     * Get autowhitelistcount
+     *
+     * @return integer
+     */
+    public function getAutowhitelistcount()
+    {
+        return $this->autowhitelistcount;
+    }
+
+    /**
+     * Set autowhitelistpercentage
+     *
+     * @param integer $autowhitelistpercentage
+     *
+     * @return Greylisting
+     */
+    public function setAutowhitelistpercentage($autowhitelistpercentage)
+    {
+        $this->autowhitelistpercentage = $autowhitelistpercentage;
+
+        return $this;
+    }
+
+    /**
+     * Get autowhitelistpercentage
+     *
+     * @return integer
+     */
+    public function getAutowhitelistpercentage()
+    {
+        return $this->autowhitelistpercentage;
+    }
+
+    /**
+     * Set useautoblacklist
+     *
+     * @param integer $useautoblacklist
+     *
+     * @return Greylisting
+     */
+    public function setUseautoblacklist($useautoblacklist)
+    {
+        $this->useautoblacklist = $useautoblacklist;
+
+        return $this;
+    }
+
+    /**
+     * Get useautoblacklist
+     *
+     * @return integer
+     */
+    public function getUseautoblacklist()
+    {
+        return $this->useautoblacklist;
+    }
+
+    /**
+     * Set autoblacklistperiod
+     *
+     * @param integer $autoblacklistperiod
+     *
+     * @return Greylisting
+     */
+    public function setAutoblacklistperiod($autoblacklistperiod)
+    {
+        $this->autoblacklistperiod = $autoblacklistperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get autoblacklistperiod
+     *
+     * @return integer
+     */
+    public function getAutoblacklistperiod()
+    {
+        return $this->autoblacklistperiod;
+    }
+
+    /**
+     * Set autoblacklistcount
+     *
+     * @param integer $autoblacklistcount
+     *
+     * @return Greylisting
+     */
+    public function setAutoblacklistcount($autoblacklistcount)
+    {
+        $this->autoblacklistcount = $autoblacklistcount;
+
+        return $this;
+    }
+
+    /**
+     * Get autoblacklistcount
+     *
+     * @return integer
+     */
+    public function getAutoblacklistcount()
+    {
+        return $this->autoblacklistcount;
+    }
+
+    /**
+     * Set autoblacklistpercentage
+     *
+     * @param integer $autoblacklistpercentage
+     *
+     * @return Greylisting
+     */
+    public function setAutoblacklistpercentage($autoblacklistpercentage)
+    {
+        $this->autoblacklistpercentage = $autoblacklistpercentage;
+
+        return $this;
+    }
+
+    /**
+     * Get autoblacklistpercentage
+     *
+     * @return integer
+     */
+    public function getAutoblacklistpercentage()
+    {
+        return $this->autoblacklistpercentage;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Greylisting
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return Greylisting
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set policyid
+     *
+     * @param \MyBundle\Entity\Policies $policyid
+     *
+     * @return Greylisting
+     */
+    public function setPolicyid(\MyBundle\Entity\Policies $policyid = null)
+    {
+        $this->policyid = $policyid;
+
+        return $this;
+    }
+
+    /**
+     * Get policyid
+     *
+     * @return \MyBundle\Entity\Policies
+     */
+    public function getPolicyid()
+    {
+        return $this->policyid;
+    }
+}

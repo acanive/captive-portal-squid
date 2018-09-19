@@ -1,0 +1,205 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * QuotasLimits
+ *
+ * @ORM\Table(name="quotas_limits", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="QuotasID", columns={"QuotasID"})})
+ * @ORM\Entity
+ */
+class QuotasLimits
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="CounterLimit", type="bigint", nullable=true)
+     */
+    private $counterlimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Quotas
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Quotas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="QuotasID", referencedColumnName="ID")
+     * })
+     */
+    private $quotasid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return QuotasLimits
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return QuotasLimits
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set counterlimit
+     *
+     * @param integer $counterlimit
+     *
+     * @return QuotasLimits
+     */
+    public function setCounterlimit($counterlimit)
+    {
+        $this->counterlimit = $counterlimit;
+
+        return $this;
+    }
+
+    /**
+     * Get counterlimit
+     *
+     * @return integer
+     */
+    public function getCounterlimit()
+    {
+        return $this->counterlimit;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return QuotasLimits
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return QuotasLimits
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set quotasid
+     *
+     * @param \MyBundle\Entity\Quotas $quotasid
+     *
+     * @return QuotasLimits
+     */
+    public function setQuotasid(\MyBundle\Entity\Quotas $quotasid = null)
+    {
+        $this->quotasid = $quotasid;
+
+        return $this;
+    }
+
+    /**
+     * Get quotasid
+     *
+     * @return \MyBundle\Entity\Quotas
+     */
+    public function getQuotasid()
+    {
+        return $this->quotasid;
+    }
+}

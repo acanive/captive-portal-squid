@@ -1,0 +1,543 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SessionTracking
+ *
+ * @ORM\Table(name="session_tracking", uniqueConstraints={@ORM\UniqueConstraint(name="Instance", columns={"Instance"})}, indexes={@ORM\Index(name="session_tracking_idx1", columns={"QueueID", "ClientAddress", "Sender"}), @ORM\Index(name="session_tracking_idx2", columns={"UnixTimestamp"})})
+ * @ORM\Entity
+ */
+class SessionTracking
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Instance", type="string", length=255, nullable=true)
+     */
+    private $instance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="QueueID", type="string", length=255, nullable=true)
+     */
+    private $queueid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UnixTimestamp", type="bigint", nullable=false)
+     */
+    private $unixtimestamp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ClientAddress", type="string", length=64, nullable=true)
+     */
+    private $clientaddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ClientName", type="string", length=255, nullable=true)
+     */
+    private $clientname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ClientReverseName", type="string", length=255, nullable=true)
+     */
+    private $clientreversename;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Protocol", type="string", length=255, nullable=true)
+     */
+    private $protocol;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="EncryptionProtocol", type="string", length=255, nullable=true)
+     */
+    private $encryptionprotocol;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="EncryptionCipher", type="string", length=255, nullable=true)
+     */
+    private $encryptioncipher;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="EncryptionKeySize", type="string", length=255, nullable=true)
+     */
+    private $encryptionkeysize;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SASLMethod", type="string", length=255, nullable=true)
+     */
+    private $saslmethod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SASLSender", type="string", length=255, nullable=true)
+     */
+    private $saslsender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SASLUsername", type="string", length=255, nullable=true)
+     */
+    private $saslusername;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Helo", type="string", length=255, nullable=true)
+     */
+    private $helo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Sender", type="string", length=255, nullable=true)
+     */
+    private $sender;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Size", type="bigint", nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="RecipientData", type="text", length=65535, nullable=true)
+     */
+    private $recipientdata;
+
+
+
+    /**
+     * Set instance
+     *
+     * @param string $instance
+     *
+     * @return SessionTracking
+     */
+    public function setInstance($instance)
+    {
+        $this->instance = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return string
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
+
+    /**
+     * Set queueid
+     *
+     * @param string $queueid
+     *
+     * @return SessionTracking
+     */
+    public function setQueueid($queueid)
+    {
+        $this->queueid = $queueid;
+
+        return $this;
+    }
+
+    /**
+     * Get queueid
+     *
+     * @return string
+     */
+    public function getQueueid()
+    {
+        return $this->queueid;
+    }
+
+    /**
+     * Set unixtimestamp
+     *
+     * @param integer $unixtimestamp
+     *
+     * @return SessionTracking
+     */
+    public function setUnixtimestamp($unixtimestamp)
+    {
+        $this->unixtimestamp = $unixtimestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get unixtimestamp
+     *
+     * @return integer
+     */
+    public function getUnixtimestamp()
+    {
+        return $this->unixtimestamp;
+    }
+
+    /**
+     * Set clientaddress
+     *
+     * @param string $clientaddress
+     *
+     * @return SessionTracking
+     */
+    public function setClientaddress($clientaddress)
+    {
+        $this->clientaddress = $clientaddress;
+
+        return $this;
+    }
+
+    /**
+     * Get clientaddress
+     *
+     * @return string
+     */
+    public function getClientaddress()
+    {
+        return $this->clientaddress;
+    }
+
+    /**
+     * Set clientname
+     *
+     * @param string $clientname
+     *
+     * @return SessionTracking
+     */
+    public function setClientname($clientname)
+    {
+        $this->clientname = $clientname;
+
+        return $this;
+    }
+
+    /**
+     * Get clientname
+     *
+     * @return string
+     */
+    public function getClientname()
+    {
+        return $this->clientname;
+    }
+
+    /**
+     * Set clientreversename
+     *
+     * @param string $clientreversename
+     *
+     * @return SessionTracking
+     */
+    public function setClientreversename($clientreversename)
+    {
+        $this->clientreversename = $clientreversename;
+
+        return $this;
+    }
+
+    /**
+     * Get clientreversename
+     *
+     * @return string
+     */
+    public function getClientreversename()
+    {
+        return $this->clientreversename;
+    }
+
+    /**
+     * Set protocol
+     *
+     * @param string $protocol
+     *
+     * @return SessionTracking
+     */
+    public function setProtocol($protocol)
+    {
+        $this->protocol = $protocol;
+
+        return $this;
+    }
+
+    /**
+     * Get protocol
+     *
+     * @return string
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Set encryptionprotocol
+     *
+     * @param string $encryptionprotocol
+     *
+     * @return SessionTracking
+     */
+    public function setEncryptionprotocol($encryptionprotocol)
+    {
+        $this->encryptionprotocol = $encryptionprotocol;
+
+        return $this;
+    }
+
+    /**
+     * Get encryptionprotocol
+     *
+     * @return string
+     */
+    public function getEncryptionprotocol()
+    {
+        return $this->encryptionprotocol;
+    }
+
+    /**
+     * Set encryptioncipher
+     *
+     * @param string $encryptioncipher
+     *
+     * @return SessionTracking
+     */
+    public function setEncryptioncipher($encryptioncipher)
+    {
+        $this->encryptioncipher = $encryptioncipher;
+
+        return $this;
+    }
+
+    /**
+     * Get encryptioncipher
+     *
+     * @return string
+     */
+    public function getEncryptioncipher()
+    {
+        return $this->encryptioncipher;
+    }
+
+    /**
+     * Set encryptionkeysize
+     *
+     * @param string $encryptionkeysize
+     *
+     * @return SessionTracking
+     */
+    public function setEncryptionkeysize($encryptionkeysize)
+    {
+        $this->encryptionkeysize = $encryptionkeysize;
+
+        return $this;
+    }
+
+    /**
+     * Get encryptionkeysize
+     *
+     * @return string
+     */
+    public function getEncryptionkeysize()
+    {
+        return $this->encryptionkeysize;
+    }
+
+    /**
+     * Set saslmethod
+     *
+     * @param string $saslmethod
+     *
+     * @return SessionTracking
+     */
+    public function setSaslmethod($saslmethod)
+    {
+        $this->saslmethod = $saslmethod;
+
+        return $this;
+    }
+
+    /**
+     * Get saslmethod
+     *
+     * @return string
+     */
+    public function getSaslmethod()
+    {
+        return $this->saslmethod;
+    }
+
+    /**
+     * Set saslsender
+     *
+     * @param string $saslsender
+     *
+     * @return SessionTracking
+     */
+    public function setSaslsender($saslsender)
+    {
+        $this->saslsender = $saslsender;
+
+        return $this;
+    }
+
+    /**
+     * Get saslsender
+     *
+     * @return string
+     */
+    public function getSaslsender()
+    {
+        return $this->saslsender;
+    }
+
+    /**
+     * Set saslusername
+     *
+     * @param string $saslusername
+     *
+     * @return SessionTracking
+     */
+    public function setSaslusername($saslusername)
+    {
+        $this->saslusername = $saslusername;
+
+        return $this;
+    }
+
+    /**
+     * Get saslusername
+     *
+     * @return string
+     */
+    public function getSaslusername()
+    {
+        return $this->saslusername;
+    }
+
+    /**
+     * Set helo
+     *
+     * @param string $helo
+     *
+     * @return SessionTracking
+     */
+    public function setHelo($helo)
+    {
+        $this->helo = $helo;
+
+        return $this;
+    }
+
+    /**
+     * Get helo
+     *
+     * @return string
+     */
+    public function getHelo()
+    {
+        return $this->helo;
+    }
+
+    /**
+     * Set sender
+     *
+     * @param string $sender
+     *
+     * @return SessionTracking
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * Get sender
+     *
+     * @return string
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * Set size
+     *
+     * @param integer $size
+     *
+     * @return SessionTracking
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return integer
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set recipientdata
+     *
+     * @param string $recipientdata
+     *
+     * @return SessionTracking
+     */
+    public function setRecipientdata($recipientdata)
+    {
+        $this->recipientdata = $recipientdata;
+
+        return $this;
+    }
+
+    /**
+     * Get recipientdata
+     *
+     * @return string
+     */
+    public function getRecipientdata()
+    {
+        return $this->recipientdata;
+    }
+}

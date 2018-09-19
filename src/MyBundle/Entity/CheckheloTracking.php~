@@ -1,0 +1,109 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CheckheloTracking
+ *
+ * @ORM\Table(name="checkhelo_tracking", uniqueConstraints={@ORM\UniqueConstraint(name="Address", columns={"Address", "Helo"})}, indexes={@ORM\Index(name="checkhelo_tracking_idx1", columns={"LastUpdate"})})
+ * @ORM\Entity
+ */
+class CheckheloTracking
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Address", type="string", length=64, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Helo", type="string", length=255, nullable=false)
+     */
+    private $helo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastUpdate", type="bigint", nullable=false)
+     */
+    private $lastupdate;
+
+
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return CheckheloTracking
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set helo
+     *
+     * @param string $helo
+     *
+     * @return CheckheloTracking
+     */
+    public function setHelo($helo)
+    {
+        $this->helo = $helo;
+
+        return $this;
+    }
+
+    /**
+     * Get helo
+     *
+     * @return string
+     */
+    public function getHelo()
+    {
+        return $this->helo;
+    }
+
+    /**
+     * Set lastupdate
+     *
+     * @param integer $lastupdate
+     *
+     * @return CheckheloTracking
+     */
+    public function setLastupdate($lastupdate)
+    {
+        $this->lastupdate = $lastupdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastupdate
+     *
+     * @return integer
+     */
+    public function getLastupdate()
+    {
+        return $this->lastupdate;
+    }
+}

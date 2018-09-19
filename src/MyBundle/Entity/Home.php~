@@ -1,0 +1,31 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Home
+ *
+ * @ORM\Table(name="home")
+ * @ORM\Entity
+ */
+class Home
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=10, nullable=true)
+     */
+    private $nombre;
+
+
+}
+

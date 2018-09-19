@@ -1,0 +1,378 @@
+{% extends 'base.html.twig' %}
+{% block title %}Perfil de usuario{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/plugins/fancybox-3.0/jquery.fancybox.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {% set sa = 'Subir avatar' %}
+    {% set ca = 'Cambiar avatar' %}
+    {% set giga = 1000 %}
+    {% set month = [ 'NULL', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'  ] %}
+    {% set m = "now"|date("m") %}
+    {% set v = m|split('') %}
+    {% if v[0] == 0 %}
+        {% set foo = v[1] %}
+    {% else %}
+        {% set foo = v[0]~v[1] %}
+    {% endif %}
+
+    <div id="perfil" class="container">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 user-info">
+                                <div class="row">
+                                    <div class="avatar">
+                                    <div id="image-holder">
+                                        {% if avatar %}
+                                            {% for avat in avatar %}
+                                                <a id="fan" href="{{ asset(avat.image) }}" data-fancybox>
+                                                    <img class="img-circle" src="{{ asset(avat.image) }}">
+                                                </a>
+                                                {#<a class="links" id="view" href="#" data-tooltip="tooltip" data-placement="top" title="Ampliar avatar">#}
+                                                    {#<i class="mdi mdi-magnify hidden-xs"></i>#}
+                                                {#</a>#}
+                                                <a class="links" id="photo" href="#" data-tooltip="tooltip" data-placement="top" title="{{ ca }}" data-toggle="modal" data-target="#myModal">
+                                                    <i class="mdi mdi-camera hidden-xs"></i>
+                                                </a>
+                                                <a class="links" id="delete" href="#" data-pathdelete="{{ path('avatarDelete', { 'id': avat.id }) }}" data-tooltip="tooltip" data-placement="top" title="Eliminar avatar">
+                                                    <i class="mdi mdi-delete hidden-xs"></i>
+                                                </a>
+                                            {% endfor %}
+                                        {% else %}
+                                            <img class="img-circle" src="{{ asset('assets/img/avatar.png') }}">
+
+                                            <a class="links" id="photo" href="#" data-tooltip="tooltip" data-placement="top" title="{{ sa }}" data-toggle="modal" data-target="#myModal" style="top: 90px">
+                                                <i class="mdi mdi-camera hidden-xs"></i>
+                                            </a>
+                                        {% endif %}
+
+                                    </div>
+                                    <div id="user-name">
+                                        <h4>
+                                            {% if  data.user_name==''%}
+                                                N/A
+                                            {% else %}
+                                                {{ data.user_name }}
+                                            {% endif %}
+                                        </h4>
+                                        <h5 style="display: inline-block">
+                                            {% if  data.user_cargo==''%}
+                                                <em>N/A</em>
+                                            {% else %}
+                                                {{ data.user_cargo }} fdgdfgdfgfdfghfg
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                    {#<div class="btn-avatar text-right">#}
+                                        {#<button class="btn btn-changeAvatar hidden-xs" data-toggle="modal" data-target="#myModal">Cambiar Avatar</button>#}
+                                    {#</div>#}
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        {% if avatar %}
+                                                        Cambiar Avatar
+                                                        {% else %}
+                                                        Subir Avatar
+                                                        {% endif %}
+                                                    </h4>
+                                                </div>
+                                                {{ form_start(formAvatar) }}
+                                                <div class="modal-body">
+                                                    <div class="form-group text-center">
+                                                        <div id="image-holder">
+                                                            {% if avatar %}
+                                                            {% for avat in avatar %}
+                                                            <img style="background-size: cover" class="thumb-image" id="img" src="{{ asset(avat.image) }}">
+                                                            {% endfor %}
+                                                            {% else %}
+                                                            <img class="thumb-image" id="img" src="{{asset('assets/img/avatar.png')}}">
+                                                            {% endif %}
+                                                        </div>
+                                                        <label class="btn-bs-file btn btn-success" style="padding: 4px 10px">
+                                                            Buscar...
+                                                        {{ form_widget(formAvatar.image) }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-login">Guardar</button>
+                                                </div>
+                                                {{ form_end(formAvatar) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr class="hidden-xs" style="border-top: 1px solid #ddd">
+                                <div id="user-general-information" class="hidden-xs">
+                                    <div class="user-information">
+                                        <h4>Nombre y Apellidos:</h4>
+                                        <span>
+                                        {% if  data.user_name==''%}
+                                            N/A
+                                        {% else %}
+                                            {{ data.user_name }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="user-information">
+                                        <h4>Usuario:</h4>
+                                        <span>
+                                        {% if  data.user_usuario==''%}
+                                            <em>N/A</em>
+                                        {% else %}
+                                            {{ data.user_usuario }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="user-information">
+                                        <h4>Email:</h4>
+                                        <span>
+                                        {% if  data.user_email==''%}
+                                            <em>N/A</em>
+                                        {% else %}
+                                            {{ data.user_email }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="user-information">
+                                        <h4>Centro de Trabajo:</h4>
+                                        <span>
+                                        {% if  data.user_centro_trabajo==''%}
+                                            <em>N/A</em>
+                                        {% else %}
+                                            {{ data.user_centro_trabajo }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="user-information">
+                                        <h4>Cargo:</h4>
+                                        <span>
+                                        {% if  data.user_cargo==''%}
+                                            <em>N/A</em>
+                                        {% else %}
+                                            {{ data.user_cargo }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="user-information">
+                                        <h4>Teléfono:</h4>
+                                        <span>
+                                        {% if  data.user_telefono==''%}
+                                            <em>N/A</em>
+                                        {% else %}
+                                            {{ data.user_telefono }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                </div>
+                                <hr class="visible-xs" style="border-top: 1px solid #ddd">
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 text-center user-options">
+
+                                <a href="{{ path('logout') }}" type="button" class="btn btn-logout" data-tooltip="tooltip" data-placement="right" title="Cerrar Sesión">
+                                    <i class="mdi mdi-power"></i>
+                                </a>
+
+                                        <div class="tabpanel" role="tabpanel">
+                                                <!-- Tab panes -->
+                                                <div class="tab-content" id="tabs-collapse">
+                                                    <div role="tabpanel" class="tab-pane fade in active" id="dustin">
+                                                        <h3>Consumo de Internet</h3>
+                                                        <div class="tab-inner">
+                                                            {% if kuota_assigned != -1 %}
+                                                                <div class="donut-internet">
+                                                                    <script type="text/javascript">
+                                                                        var percent_internet = {{ percent_internet }};
+                                                                    </script>
+                                                                    <div id="donutchart2" data-percent="{{ percent_internet }}"></div>
+                                                                </div>
+
+                                                                {% if kuota >= kuota_assigned %}
+                                                                    <h4>Lo sentimos!!!</h4>
+                                                                    <h5>Usted a consumido su kuota mensual de internet</h5>
+                                                                {% else %}
+                                                                <h5>Usted a consumido
+                                                                    {% set is_mb = kuota_assigned|split('-') %}
+                                                                    {% set is_mb_kuota = kuota|split('-') %}
+                                                                    {% if is_mb|length == 2 %}
+                                                                        {{ is_mb_kuota[0] }} Mb
+                                                                        de {{ is_mb[0] }} Mb
+                                                                    {% else %}
+                                                                        {% if is_mb_kuota|length == 2 %}
+                                                                            {{ is_mb_kuota[0] }} Mb
+                                                                        {% else %}
+                                                                        {{ kuota/1000 }} Gb
+                                                                        {% endif %}
+                                                                        de {{ kuota_assigned/giga }} Gb
+                                                                    {% endif %}
+                                                                     en {{ month[foo] }}
+                                                                </h5>
+                                                                {% endif %}
+                                                            {% elseif kuota_assigned == -1 %}
+                                                                <div class="infinite">
+                                                                    <img  src="{{ asset('assets/img/infinito.png') }}">
+                                                                </div>
+                                                                <h5>Usted tiene kuota ilimitada!!!</h5>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+
+                                                    <div role="tabpanel" class="tab-pane fade" id="daksh">
+                                                        <h3>Correos Enviados</h3>
+                                                        <div class="tab-inner">
+                                                            {% if result != 0 %}
+                                                                <div class="donut-correo">
+                                                                    <script type="text/javascript">
+                                                                        var percent = {{ result.percent }};
+                                                                    </script>
+                                                                    <div id="donutchart1" data-percent="{{ result.percent }}"></div>
+                                                                </div>
+                                                                {% if result.cant_email_send ==0 %}
+                                                                    <h5>
+                                                                        Usted no ha enviado ningún correo internacional en
+                                                                        {{ month[foo] }}
+                                                                    </h5>
+                                                                {% else %}
+                                                                    <h5>
+                                                                        Usted ha enviado {{ result.cant_email_send }}
+                                                                        {% if result.cant_email_send == 1 %}
+                                                                            correo internacional
+                                                                        {% elseif result.cant_email_send > 1 %}
+                                                                            correos internacionales
+                                                                        {% endif %}
+                                                                        en {{ month[foo] }}
+                                                                    </h5>
+                                                                {% endif %}
+                                                            {% elseif result ==0 %}
+                                                                <div class="oops">
+                                                                    <h4><i class="mdi mdi-alert-circle-outline"></i>Lo sentimos</h4>
+                                                                    <span>El servicio de correo no está disponible</span>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+
+                                                    <div role="tabpanel" class="tab-pane fade" id="anna">
+                                                        <h3>Cambiar Contraseña</h3>
+                                                        <div class="tab-inner">
+                                                            {{ form_start(form,{'attr': {'id':'changePassword'}}) }}
+                                                            <div class="form-group text-left" >
+                                                                {{ form_label(form.oldPassword) }}
+                                                                {{ form_errors(form.oldPassword ) }}
+                                                                {{ form_widget(form.oldPassword, { 'attr': {'class': 'form-control','required': 'required'} }) }}
+                                                            </div>
+                                                            <div class="form-group text-left" >
+                                                                {{ form_label(form.password.first) }}
+                                                                {#<p class="help-block">#}
+                                                                    {#Su contraseña debe contener Letras mayúsculas y minúsculas, Números y Caracteres Especiales.#}
+                                                                {#</p>#}
+                                                                {{ form_errors(form.password.first ) }}
+                                                                {{ form_widget(form.password.first, { 'attr': {'class': 'form-control','required': 'required'} }) }}
+                                                            </div>
+                                                            <div class="form-group text-left" >
+                                                                {{ form_label(form.password.second) }}
+                                                                {{ form_errors(form.password.second ) }}
+                                                                {{ form_widget(form.password.second, { 'attr': {'class': 'form-control','required': 'required'} }) }}
+                                                            </div>
+                                                            <div class="form-group text-right">
+                                                                <button class="btn btn-login" type="submit" >
+                                                                    Guardar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        {{ form_end(form) }}
+
+                                                        </div>
+                                                    </div>
+                                            <!-- Nav tabs -->
+                                                    <div class="tabs">
+                                                        <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
+                                                            <li role="presentation" class="active text-center">
+                                                                <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab" class="btn">
+                                                                    {#<img src="{{ asset('assets/img/kuota.png') }}" />#}
+                                                                    <i class="mdi mdi-web"></i>
+                                                                </a>
+                                                                <span>Consumo de internet</span>
+                                                            </li>
+                                                            <li role="presentation" class="">
+                                                                <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab" class="btn">
+                                                                    {#<img src="{{ asset('assets/img/email.png') }}" />#}
+                                                                    <i class="mdi mdi-email"></i>
+                                                                </a>
+                                                                <span>Correos enviados</span>
+                                                            </li>
+                                                            <li role="presentation" class="">
+                                                                <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab" class="btn">
+                                                                    {#<img src="{{ asset('assets/img/changePassword.png') }}" />#}
+                                                                    <i class="mdi mdi-key-variant"></i>
+                                                                </a>
+                                                                <span>Cambiar contraseña</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                {#<div class="col-md-2">#}
+                    {#{% for flashMessage in app.session.flashbag.get('correctPass') %}#}
+                        {#<div class="alert alert-success message">#}
+                            {#<p>#}
+                                {#{{ flashMessage }}#}
+                            {#</p>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+                    {#{% for flashMessage in app.session.flashbag.get('wrongPass') %}#}
+                        {#<div class="alert alert-danger message">#}
+                            {#<p>#}
+                                {#{{ flashMessage }}#}
+                            {#</p>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+        {#</div>#}
+
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title" id="myModalLabel"><i class="mdi mdi-alert-circle"></i> Aviso</h2>
+                </div>
+                <div style="font-size: 12pt" class="modal-body">
+                    ¿Realmente desea eliminar su avatar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-option="yesdelete" class="btn btn-danger optiondelete">Eliminar</button>
+                    <button type="button" data-option="nodelete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/plugins/Donut-Chart/jquery.donutchart.js') }}"></script>
+    <script src="{{ asset('assets/plugins/Donut-Chart/jquery.donutchart1.js') }}"></script>
+
+    <script>
+        $("#donutchart1").donutchart({'size': 150, 'bgColor': '#CFD8DC', 'donutwidth': 30 });
+        $("#donutchart1").donutchart("animate");
+
+        $("#donutchart2").donutchart1({'size': 150, 'bgColor': '#CFD8DC', 'donutwidth': 30 });
+        $("#donutchart2").donutchart1("animate");
+    </script>
+    <script src="{{ asset('assets/plugins/fancybox-3.0/jquery.fancybox.min.js') }}"></script>
+
+{% endblock %}

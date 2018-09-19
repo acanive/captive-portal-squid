@@ -1,0 +1,8 @@
+services:
+    login_listener:
+         class: MyBundle\Listener\LoginListener
+         tags:
+            - { name: kernel.event_listener, event: security.interactive_login }
+
+    after.logout:
+         class: MyBundle\Listener\AfterLogout

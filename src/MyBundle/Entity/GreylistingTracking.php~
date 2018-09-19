@@ -1,0 +1,233 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GreylistingTracking
+ *
+ * @ORM\Table(name="greylisting_tracking", uniqueConstraints={@ORM\UniqueConstraint(name="TrackKey", columns={"TrackKey", "Sender", "Recipient"})}, indexes={@ORM\Index(name="greylisting_tracking_idx1", columns={"LastUpdate", "Count"})})
+ * @ORM\Entity
+ */
+class GreylistingTracking
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TrackKey", type="string", length=512, nullable=false)
+     */
+    private $trackkey;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Sender", type="string", length=255, nullable=false)
+     */
+    private $sender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Recipient", type="string", length=255, nullable=false)
+     */
+    private $recipient;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="FirstSeen", type="bigint", nullable=false)
+     */
+    private $firstseen;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastUpdate", type="bigint", nullable=false)
+     */
+    private $lastupdate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Tries", type="bigint", nullable=false)
+     */
+    private $tries;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Count", type="bigint", nullable=false)
+     */
+    private $count;
+
+
+
+    /**
+     * Set trackkey
+     *
+     * @param string $trackkey
+     *
+     * @return GreylistingTracking
+     */
+    public function setTrackkey($trackkey)
+    {
+        $this->trackkey = $trackkey;
+
+        return $this;
+    }
+
+    /**
+     * Get trackkey
+     *
+     * @return string
+     */
+    public function getTrackkey()
+    {
+        return $this->trackkey;
+    }
+
+    /**
+     * Set sender
+     *
+     * @param string $sender
+     *
+     * @return GreylistingTracking
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * Get sender
+     *
+     * @return string
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * Set recipient
+     *
+     * @param string $recipient
+     *
+     * @return GreylistingTracking
+     */
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
+
+        return $this;
+    }
+
+    /**
+     * Get recipient
+     *
+     * @return string
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
+
+    /**
+     * Set firstseen
+     *
+     * @param integer $firstseen
+     *
+     * @return GreylistingTracking
+     */
+    public function setFirstseen($firstseen)
+    {
+        $this->firstseen = $firstseen;
+
+        return $this;
+    }
+
+    /**
+     * Get firstseen
+     *
+     * @return integer
+     */
+    public function getFirstseen()
+    {
+        return $this->firstseen;
+    }
+
+    /**
+     * Set lastupdate
+     *
+     * @param integer $lastupdate
+     *
+     * @return GreylistingTracking
+     */
+    public function setLastupdate($lastupdate)
+    {
+        $this->lastupdate = $lastupdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastupdate
+     *
+     * @return integer
+     */
+    public function getLastupdate()
+    {
+        return $this->lastupdate;
+    }
+
+    /**
+     * Set tries
+     *
+     * @param integer $tries
+     *
+     * @return GreylistingTracking
+     */
+    public function setTries($tries)
+    {
+        $this->tries = $tries;
+
+        return $this;
+    }
+
+    /**
+     * Get tries
+     *
+     * @return integer
+     */
+    public function getTries()
+    {
+        return $this->tries;
+    }
+
+    /**
+     * Set count
+     *
+     * @param integer $count
+     *
+     * @return GreylistingTracking
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+
+        return $this;
+    }
+
+    /**
+     * Get count
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+}

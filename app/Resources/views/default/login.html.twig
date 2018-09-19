@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Portal de acceso{% endblock %}
+{% block body %}
+
+    <div class="container login">
+        <div class="text-center">
+            <img src="{{ asset('assets/img/internet.png') }}">
+        </div>
+        <div class="login-title text-center">
+            <h1>Portal de acceso a Internet</h1>
+            <h4>Joven Club de Computación</h4>
+        </div>
+        <form class="form-singin clearfix" action="{{ path('login_check') }}" method="post">
+            <div class="form-group">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control input-lg" placeholder="Usuario" >
+                <input type="password" id="password" name="_password" class="form-control input-lg" placeholder="Contraseña">
+            </div>
+            <button class="btn btn-login pull-right" type="submit">Acceder</button>
+            {% if error %}
+                <div class="alert alert-danger text-center" style="float: left">
+                    <p>
+                        <i class="mdi mdi-alert-circle-outline"></i>
+                        {{ error_show }}
+                    </p>
+                </div>
+            {% endif %}
+
+        </form>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,422 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Checkhelo
+ *
+ * @ORM\Table(name="checkhelo", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyID", columns={"PolicyID"})})
+ * @ORM\Entity
+ */
+class Checkhelo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UseBlacklist", type="smallint", nullable=true)
+     */
+    private $useblacklist;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="BlacklistPeriod", type="bigint", nullable=true)
+     */
+    private $blacklistperiod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="UseHRP", type="smallint", nullable=true)
+     */
+    private $usehrp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="HRPPeriod", type="bigint", nullable=true)
+     */
+    private $hrpperiod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="HRPLimit", type="bigint", nullable=true)
+     */
+    private $hrplimit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RejectInvalid", type="smallint", nullable=true)
+     */
+    private $rejectinvalid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RejectIP", type="smallint", nullable=true)
+     */
+    private $rejectip;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RejectUnresolvable", type="smallint", nullable=true)
+     */
+    private $rejectunresolvable;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Policies
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Policies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyID", referencedColumnName="ID")
+     * })
+     */
+    private $policyid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Checkhelo
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Checkhelo
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set useblacklist
+     *
+     * @param integer $useblacklist
+     *
+     * @return Checkhelo
+     */
+    public function setUseblacklist($useblacklist)
+    {
+        $this->useblacklist = $useblacklist;
+
+        return $this;
+    }
+
+    /**
+     * Get useblacklist
+     *
+     * @return integer
+     */
+    public function getUseblacklist()
+    {
+        return $this->useblacklist;
+    }
+
+    /**
+     * Set blacklistperiod
+     *
+     * @param integer $blacklistperiod
+     *
+     * @return Checkhelo
+     */
+    public function setBlacklistperiod($blacklistperiod)
+    {
+        $this->blacklistperiod = $blacklistperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get blacklistperiod
+     *
+     * @return integer
+     */
+    public function getBlacklistperiod()
+    {
+        return $this->blacklistperiod;
+    }
+
+    /**
+     * Set usehrp
+     *
+     * @param integer $usehrp
+     *
+     * @return Checkhelo
+     */
+    public function setUsehrp($usehrp)
+    {
+        $this->usehrp = $usehrp;
+
+        return $this;
+    }
+
+    /**
+     * Get usehrp
+     *
+     * @return integer
+     */
+    public function getUsehrp()
+    {
+        return $this->usehrp;
+    }
+
+    /**
+     * Set hrpperiod
+     *
+     * @param integer $hrpperiod
+     *
+     * @return Checkhelo
+     */
+    public function setHrpperiod($hrpperiod)
+    {
+        $this->hrpperiod = $hrpperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get hrpperiod
+     *
+     * @return integer
+     */
+    public function getHrpperiod()
+    {
+        return $this->hrpperiod;
+    }
+
+    /**
+     * Set hrplimit
+     *
+     * @param integer $hrplimit
+     *
+     * @return Checkhelo
+     */
+    public function setHrplimit($hrplimit)
+    {
+        $this->hrplimit = $hrplimit;
+
+        return $this;
+    }
+
+    /**
+     * Get hrplimit
+     *
+     * @return integer
+     */
+    public function getHrplimit()
+    {
+        return $this->hrplimit;
+    }
+
+    /**
+     * Set rejectinvalid
+     *
+     * @param integer $rejectinvalid
+     *
+     * @return Checkhelo
+     */
+    public function setRejectinvalid($rejectinvalid)
+    {
+        $this->rejectinvalid = $rejectinvalid;
+
+        return $this;
+    }
+
+    /**
+     * Get rejectinvalid
+     *
+     * @return integer
+     */
+    public function getRejectinvalid()
+    {
+        return $this->rejectinvalid;
+    }
+
+    /**
+     * Set rejectip
+     *
+     * @param integer $rejectip
+     *
+     * @return Checkhelo
+     */
+    public function setRejectip($rejectip)
+    {
+        $this->rejectip = $rejectip;
+
+        return $this;
+    }
+
+    /**
+     * Get rejectip
+     *
+     * @return integer
+     */
+    public function getRejectip()
+    {
+        return $this->rejectip;
+    }
+
+    /**
+     * Set rejectunresolvable
+     *
+     * @param integer $rejectunresolvable
+     *
+     * @return Checkhelo
+     */
+    public function setRejectunresolvable($rejectunresolvable)
+    {
+        $this->rejectunresolvable = $rejectunresolvable;
+
+        return $this;
+    }
+
+    /**
+     * Get rejectunresolvable
+     *
+     * @return integer
+     */
+    public function getRejectunresolvable()
+    {
+        return $this->rejectunresolvable;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Checkhelo
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return Checkhelo
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set policyid
+     *
+     * @param \MyBundle\Entity\Policies $policyid
+     *
+     * @return Checkhelo
+     */
+    public function setPolicyid(\MyBundle\Entity\Policies $policyid = null)
+    {
+        $this->policyid = $policyid;
+
+        return $this;
+    }
+
+    /**
+     * Get policyid
+     *
+     * @return \MyBundle\Entity\Policies
+     */
+    public function getPolicyid()
+    {
+        return $this->policyid;
+    }
+}

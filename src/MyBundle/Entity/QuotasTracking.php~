@@ -1,0 +1,143 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * QuotasTracking
+ *
+ * @ORM\Table(name="quotas_tracking", uniqueConstraints={@ORM\UniqueConstraint(name="QuotasLimitsID", columns={"QuotasLimitsID", "TrackKey"})}, indexes={@ORM\Index(name="quotas_tracking_idx1", columns={"LastUpdate"}), @ORM\Index(name="IDX_E4E62EDA8DE699C6", columns={"QuotasLimitsID"})})
+ * @ORM\Entity
+ */
+class QuotasTracking
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TrackKey", type="string", length=512, nullable=true)
+     */
+    private $trackkey;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastUpdate", type="bigint", nullable=true)
+     */
+    private $lastupdate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Counter", type="decimal", precision=10, scale=4, nullable=true)
+     */
+    private $counter;
+
+    /**
+     * @var \MyBundle\Entity\QuotasLimits
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\QuotasLimits")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="QuotasLimitsID", referencedColumnName="ID")
+     * })
+     */
+    private $quotaslimitsid;
+
+
+
+    /**
+     * Set trackkey
+     *
+     * @param string $trackkey
+     *
+     * @return QuotasTracking
+     */
+    public function setTrackkey($trackkey)
+    {
+        $this->trackkey = $trackkey;
+
+        return $this;
+    }
+
+    /**
+     * Get trackkey
+     *
+     * @return string
+     */
+    public function getTrackkey()
+    {
+        return $this->trackkey;
+    }
+
+    /**
+     * Set lastupdate
+     *
+     * @param integer $lastupdate
+     *
+     * @return QuotasTracking
+     */
+    public function setLastupdate($lastupdate)
+    {
+        $this->lastupdate = $lastupdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastupdate
+     *
+     * @return integer
+     */
+    public function getLastupdate()
+    {
+        return $this->lastupdate;
+    }
+
+    /**
+     * Set counter
+     *
+     * @param string $counter
+     *
+     * @return QuotasTracking
+     */
+    public function setCounter($counter)
+    {
+        $this->counter = $counter;
+
+        return $this;
+    }
+
+    /**
+     * Get counter
+     *
+     * @return string
+     */
+    public function getCounter()
+    {
+        return $this->counter;
+    }
+
+    /**
+     * Set quotaslimitsid
+     *
+     * @param \MyBundle\Entity\QuotasLimits $quotaslimitsid
+     *
+     * @return QuotasTracking
+     */
+    public function setQuotaslimitsid(\MyBundle\Entity\QuotasLimits $quotaslimitsid = null)
+    {
+        $this->quotaslimitsid = $quotaslimitsid;
+
+        return $this;
+    }
+
+    /**
+     * Get quotaslimitsid
+     *
+     * @return \MyBundle\Entity\QuotasLimits
+     */
+    public function getQuotaslimitsid()
+    {
+        return $this->quotaslimitsid;
+    }
+}

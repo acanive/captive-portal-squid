@@ -1,0 +1,174 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PolicyGroupMembers
+ *
+ * @ORM\Table(name="policy_group_members", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyGroupID", columns={"PolicyGroupID"})})
+ * @ORM\Entity
+ */
+class PolicyGroupMembers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Member", type="string", length=255, nullable=false)
+     */
+    private $member;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \MyBundle\Entity\PolicyGroups
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\PolicyGroups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyGroupID", referencedColumnName="ID")
+     * })
+     */
+    private $policygroupid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return PolicyGroupMembers
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set member
+     *
+     * @param string $member
+     *
+     * @return PolicyGroupMembers
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return string
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return PolicyGroupMembers
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return PolicyGroupMembers
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set policygroupid
+     *
+     * @param \MyBundle\Entity\PolicyGroups $policygroupid
+     *
+     * @return PolicyGroupMembers
+     */
+    public function setPolicygroupid(\MyBundle\Entity\PolicyGroups $policygroupid = null)
+    {
+        $this->policygroupid = $policygroupid;
+
+        return $this;
+    }
+
+    /**
+     * Get policygroupid
+     *
+     * @return \MyBundle\Entity\PolicyGroups
+     */
+    public function getPolicygroupid()
+    {
+        return $this->policygroupid;
+    }
+}

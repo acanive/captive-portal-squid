@@ -1,0 +1,9 @@
+services:
+    ldap:
+        class: Symfony\Component\Ldap\LdapClient
+        arguments:
+            - ldap://10.1.32.3   # host
+            - 389         # port
+            - 3           # version
+            - false       # SSL
+            - false        # TLS

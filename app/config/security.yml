@@ -1,0 +1,32 @@
+security:
+    providers:
+        my_ldap:
+            ldap:
+                service: ldap
+                base_dn: ou=People,dc=pri,dc=jovenclub,dc=cu
+                search_dn: "uid=kolab-service,ou=Special Users,dc=pri,dc=jovenclub,dc=cu"
+                search_password: Kolabpri2016*
+                default_roles: ROLE_USER
+                uid_key: uid
+
+    firewalls:
+         main:
+            provider: my_ldap
+            pattern:  ^/
+            anonymous:  ~
+            form_login_ldap:
+                  service: ldap
+                  dn_string: uid={username},ou=People,dc=pri,dc=jovenclub,dc=cu
+                  check_path: login_check
+                  login_path: login
+                  default_target_path: /profile
+                  always_use_default_target_path: true
+
+            logout:
+                  path:   /logout
+                  target: login
+                  handler: after.logout
+
+
+
+

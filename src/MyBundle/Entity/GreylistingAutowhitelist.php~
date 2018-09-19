@@ -1,0 +1,171 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GreylistingAutowhitelist
+ *
+ * @ORM\Table(name="greylisting_autowhitelist", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"}), @ORM\UniqueConstraint(name="TrackKey", columns={"TrackKey"})})
+ * @ORM\Entity
+ */
+class GreylistingAutowhitelist
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TrackKey", type="string", length=512, nullable=false)
+     */
+    private $trackkey;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Added", type="bigint", nullable=false)
+     */
+    private $added;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="LastSeen", type="bigint", nullable=false)
+     */
+    private $lastseen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return GreylistingAutowhitelist
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set trackkey
+     *
+     * @param string $trackkey
+     *
+     * @return GreylistingAutowhitelist
+     */
+    public function setTrackkey($trackkey)
+    {
+        $this->trackkey = $trackkey;
+
+        return $this;
+    }
+
+    /**
+     * Get trackkey
+     *
+     * @return string
+     */
+    public function getTrackkey()
+    {
+        return $this->trackkey;
+    }
+
+    /**
+     * Set added
+     *
+     * @param integer $added
+     *
+     * @return GreylistingAutowhitelist
+     */
+    public function setAdded($added)
+    {
+        $this->added = $added;
+
+        return $this;
+    }
+
+    /**
+     * Get added
+     *
+     * @return integer
+     */
+    public function getAdded()
+    {
+        return $this->added;
+    }
+
+    /**
+     * Set lastseen
+     *
+     * @param integer $lastseen
+     *
+     * @return GreylistingAutowhitelist
+     */
+    public function setLastseen($lastseen)
+    {
+        $this->lastseen = $lastseen;
+
+        return $this;
+    }
+
+    /**
+     * Get lastseen
+     *
+     * @return integer
+     */
+    public function getLastseen()
+    {
+        return $this->lastseen;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return GreylistingAutowhitelist
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+}

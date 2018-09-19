@@ -1,0 +1,22 @@
+login:
+    path:     /
+    defaults: { _controller: "MyBundle:Default:login" }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+changePassword:
+    path:    /changePass
+    defaults: { _controller: "MyBundle:Default:changePassword" }
+
+perfil:
+    path:     /profile
+    defaults: { _controller: "MyBundle:Default:perfil" }
+
+avatarDelete:
+    path:     /avatarDelete/{id}
+    defaults: { _controller: "MyBundle:Default:avatarDelete" }
+

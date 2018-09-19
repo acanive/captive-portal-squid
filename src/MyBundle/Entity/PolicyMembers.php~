@@ -1,0 +1,205 @@
+<?php
+
+namespace MyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PolicyMembers
+ *
+ * @ORM\Table(name="policy_members", uniqueConstraints={@ORM\UniqueConstraint(name="ID", columns={"ID"})}, indexes={@ORM\Index(name="PolicyID", columns={"PolicyID"})})
+ * @ORM\Entity
+ */
+class PolicyMembers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ID", type="bigint", nullable=false)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Source", type="text", length=65535, nullable=true)
+     */
+    private $source;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Destination", type="text", length=65535, nullable=true)
+     */
+    private $destination;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Comment", type="string", length=1024, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Disabled", type="smallint", nullable=false)
+     */
+    private $disabled = '0';
+
+    /**
+     * @var \MyBundle\Entity\Policies
+     *
+     * @ORM\ManyToOne(targetEntity="MyBundle\Entity\Policies")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PolicyID", referencedColumnName="ID")
+     * })
+     */
+    private $policyid;
+
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return PolicyMembers
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return PolicyMembers
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * Set destination
+     *
+     * @param string $destination
+     *
+     * @return PolicyMembers
+     */
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
+
+        return $this;
+    }
+
+    /**
+     * Get destination
+     *
+     * @return string
+     */
+    public function getDestination()
+    {
+        return $this->destination;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return PolicyMembers
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set disabled
+     *
+     * @param integer $disabled
+     *
+     * @return PolicyMembers
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Get disabled
+     *
+     * @return integer
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Set policyid
+     *
+     * @param \MyBundle\Entity\Policies $policyid
+     *
+     * @return PolicyMembers
+     */
+    public function setPolicyid(\MyBundle\Entity\Policies $policyid = null)
+    {
+        $this->policyid = $policyid;
+
+        return $this;
+    }
+
+    /**
+     * Get policyid
+     *
+     * @return \MyBundle\Entity\Policies
+     */
+    public function getPolicyid()
+    {
+        return $this->policyid;
+    }
+}
