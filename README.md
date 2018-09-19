@@ -8,10 +8,10 @@ This is a captive portal through Squid using PHP, LDAP and memcahed that allows 
 * Get a notification of the last access.
 
 #### Screenshots:
-Login page
+- Login page
 ![alt text](https://res.cloudinary.com/dombtm0fe/image/upload/v1537369949/login.png)
 
-Profile page
+- Profile page                                                                   
 ![alt text](https://res.cloudinary.com/dombtm0fe/image/upload/v1537369152/captive-portal-squid.png)
 
 #### Video demo:
