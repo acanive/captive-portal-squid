@@ -3,7 +3,7 @@ This is a captive portal through Squid using PHP, LDAP and memcahed that allows 
 
 #### Features:
 * Get the **Real Time** internet quota.
-* Get internationals emails sent by the user in the current month.
+* Get emails sent by the user in the current month.
 * Change the user password.
 * Get a notification of the last access.
 
